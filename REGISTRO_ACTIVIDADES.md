@@ -96,3 +96,33 @@
 
 ---
 
+## 📝 Paso 2: Generación de Propuesta con `/opsx:propose`
+
+- **Rama Git:** `feature/paso-2-propose`
+- **Comando Ejecutado:** `openspec new change pokemon-cards-likes` y validación con `openspec validate pokemon-cards-likes`.
+- **Resultado:** Se creó formalmente la propuesta OpenSpec `pokemon-cards-likes` en `ProyectoPikachus/openspec/changes/pokemon-cards-likes/`.
+
+### 1. Artefactos Generados (4/4 Completos y Validados)
+- **`proposal.md`:** Define el objetivo, valor para el usuario coleccionista, alcance nítido de 24 cartas de la Gen 1, nueva capacidad declarada (`pokemon-cards-likes`) e impacto en archivos frontend.
+- **`design.md`:** Detalla las decisiones técnicas:
+  - Consumo de PokéAPI con `Promise.allSettled` y control de timeout mediante `AbortController`.
+  - Persistencia de likes como array JSON de IDs en `localStorage` y `Set<number>` en memoria ($\mathcal{O}(1)$).
+  - Arquitectura modular desacoplada en 4 ES Modules (`api.js`, `storage.js`, `ui.js`, `app.js`).
+  - Microinteracción de like puramente en CSS (`like-elastic` con curva física elástica `cubic-bezier` y `ring-pulse`).
+- **`spec.md` (y delta spec en `specs/pokemon-cards-likes/spec.md`):** Requisitos funcionales formalizados con palabras clave normativas RFC 2119 (`SHALL`):
+  - Requisito de carga y renderizado del catálogo.
+  - Requisito de interacción y conmutación de likes.
+  - Requisito de persistencia local en navegador.
+- **`tasks.md`:** Desglose secuencial y atómico en 4 grupos con verificación explícita en cada tarea.
+
+### 2. Mini-Ejercicio A — Poda y Enfoque en `tasks.md`
+- **Revisión Crítica Previa a la Programación:**
+  - Se analizó la propuesta de dividir los estilos en múltiples archivos CSS sueltos (`tokens.css`, `base.css`, `components.css`, `states.css`).
+  - **Decisión de Poda:** Se unificó la hoja de estilos en un único archivo `styles.css` bien estructurado por capas (Design Tokens, Reset, Layout, Componentes, Microinteracciones, Skeletons y A11y), evitando sobrecarga de peticiones de red y manteniendo la modularidad estricta centrada en los 4 módulos de JavaScript (`api.js`, `storage.js`, `ui.js`, `app.js`).
+  - Se eliminó cualquier vestigio de paginación o filtrado, asegurando fidelidad a la consigna base.
+- **Resultado de Validación:** `openspec validate pokemon-cards-likes` $\rightarrow$ **Change 'pokemon-cards-likes' is valid** (0 errores, 0 advertencias).
+- **Dictamen del QA Auditor:** Aprobado con directrices estrictas de accesibilidad y rendimiento para la Tarea 1.
+
+---
+
+
