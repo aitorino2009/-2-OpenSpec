@@ -37,3 +37,62 @@
    - Subagente `qa-auditor`: Revisa críticamente cada cambio y artefacto, señalando fallos, malas prácticas y exigiendo rectificaciones.
 
 ---
+
+## 📚 Teoría – Diferencia entre `/opsx:explore` y `/opsx:propose`
+
+| Comando | Propósito | Resultado |
+|---|---|---|
+| `/opsx:explore` | Pensar, investigar y aclarar una idea o problema. | Conversación, análisis del código, opciones y riesgos. No implementa cambios. |
+| `/opsx:propose` | Convertir una idea suficientemente clara en un cambio formal. | Crea `proposal.md`, `design.md`, `spec.md` y `tasks.md`, dejándolo listo para su revisión e implementación. |
+
+- **Usa `/opsx:explore` cuando:**
+  - La idea todavía es vaga o preliminar.
+  - Necesitas entender el código existente o investigar APIs y bibliotecas externas.
+  - Quieres comparar alternativas o descubrir riesgos y limitaciones técnicas.
+  - Aún no sabes con exactitud qué se debe construir ni cómo estructurarlo.
+- **Usa `/opsx:propose` cuando:**
+  - Ya sabes qué quieres construir o corregir y las decisiones clave están tomadas.
+  - Quieres generar toda la documentación del cambio de una vez (`proposal.md`, `design.md`, `spec.md`, `tasks.md`).
+  - Necesitas una lista de tareas desglosada y lista para implementar.
+
+**Flujo habitual de OpenSpec:**
+```
+/opsx:explore  -->  /opsx:propose  -->  Revisión manual de tasks.md  -->  /opsx:apply
+```
+
+---
+
+## 🔍 Paso 1: Exploración con `/opsx:explore` y Auditoría con Subagentes
+
+- **Rama Git:** `feature/paso-1-explore`
+- **Prompt Ejecutado:**
+  > `/opsx:explore "Quiero crear un proyecto con Openspec para una sencilla web-app que muestra imágenes de Pokémons en fichas y permite dar like a cada una."`
+
+### 1. Búsqueda de Referencias Técnicas y de Diseño
+- **PokéAPI:**
+  - Endpoint de catálogo: `GET https://pokeapi.co/api/v2/pokemon?limit=24&offset=0`.
+  - Endpoint de detalle individual: `GET https://pokeapi.co/api/v2/pokemon/{id}`.
+  - Ilustraciones oficiales en alta resolución (`official-artwork`):
+    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{id}.png`
+- **Microinteracción de Like en CSS:**
+  - Animación elástica `cubic-bezier(0.175, 0.885, 0.32, 1.275)`.
+  - Destello perimetral con pseudo-elemento `::after` (`@keyframes ring-pulse`) sin inyección sucia de nodos en el DOM.
+- **Directrices de Diseño (Taste Skill, UI UX Pro Max, Frontend-Design, Impeccable):**
+  - Cero "AI slop" (evitar fondos blancos genéricos, degradados púrpura aburridos o tarjetas sin identidad).
+  - Tema *Pokédex Neo-Collector* con fondo grafito azulado oscuro `#0A0D18`, superficies `#121829`, bordes con resplandor dependiente del tipo elemental y tipografía nítida con contraste WCAG AAA/AA.
+  - Reserva geométrica con Skeletons idénticos a las cartas finales para asegurar **CLS = 0**.
+
+### 2. Decisiones de Arquitectura Adoptadas
+1. **¿PokéAPI o datos locales?** $\rightarrow$ **PokéAPI** con fallback escalonado de imágenes y `Promise.allSettled`.
+2. **¿Persistencia de likes?** $\rightarrow$ **Navegador (`localStorage`)** con clave `'pokecards_v1_likes'`, modelo en memoria `Set<number>` para operaciones $\mathcal{O}(1)$, parseo defensivo contra JSON corrupto y fallback de cuota.
+3. **¿Paginación, búsqueda o filtros?** $\rightarrow$ **NO**, catálogo inicial cerrado de 24 tarjetas para garantizar simplicidad, modularidad y fidelidad a la consigna.
+4. **¿Tecnología?** $\rightarrow$ **JavaScript Vanilla modular (ES Modules)** estructurado en `api.js`, `storage.js`, `ui.js` y `app.js`.
+
+### 3. Intervención de Subagentes y Auditoría con Regaño
+1. **Subagente Desarrollador (`developer-worker`):** Redactó un informe exploratorio completo (`ProyectoPikachus/INFORME_EXPLORACION_POKEMON_CARDS.md`), pero pecó de sobreingeniería agregando búsqueda, filtros de tipo y toggle de favoritos.
+2. **Subagente Auditor (`qa-auditor`):** Emitió una severa llamada de atención y regañó al equipo por desoír la consigna *"¿Paginación, búsqueda o filtros? -> (No, todo sencillo y por módulos para empezar)"*, además de señalar un antipatrón de accesibilidad (`tabindex="0"` en `<article>`), discrepancia en el número de skeletons (12 vs 24) y dependencia del empty state respecto al filtro de favoritos.
+3. **Subsanación:** El Desarrollador Worker purgó el código de búsqueda y filtros, corrigió la accesibilidad de las tarjetas para que sólo el botón reciba foco por tabulación, igualó los skeletons a 24 y simplificó la animación del corazón a CSS puro.
+4. **Aprobación Final:** El QA Auditor emitió su dictamen favorable con honores autorizando el paso a `/opsx:propose`.
+
+---
+
