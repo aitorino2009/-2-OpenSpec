@@ -171,7 +171,27 @@
   - Ejecución de tests en consola con Node.js verificando toggle de likes, conteo dinámico, persistencia y fetch concurrente de entidades normalizadas.
 - **Dictamen de Auditoría QA:** 🟢 **Aprobado con honores.**
 
+### Bloque 3: Renderizado de Interfaz y Microinteracciones (Tareas 3.1 y 3.2)
+- **3.1 `js/ui.js`:**
+  - Módulo de presentación pura en el DOM: desacoplamiento absoluto de `api.js` y `localStorage`.
+  - Creación de tarjetas `<article class="pokemon-card">` con inyección de variables temáticas CSS `--card-theme-color` y `--card-glow-color`.
+  - **Cumplimiento de A11y (WCAG 2.1 AA):** Cero atributos `tabindex="0"` en `<article>`, permitiendo flujo natural de tabulación únicamente entre botones interactivos.
+  - Ilustraciones oficiales en alta resolución con `aspect-ratio: 1 / 1`, `loading="lazy"` y `fetchpriority="high"` en las primeras cartas para optimización de LCP.
+  - Botón de Like accesible con SVG vectorial, gestión dinámica de `aria-pressed="true|false"` y `aria-label` descriptivo.
+  - Renderizado de 24 skeletons con animación shimmer mediante `DocumentFragment` garantizando **CLS = 0**.
+  - Actualización granular del botón (`updateLikeButton`) sin repintar la tarjeta completa.
+  - Estados de error (`renderError`) con botón interactivo de reintento `.btn-retry` y estado vacío (`renderEmpty`).
+  - Notificaciones auditivas accesibles mediante `#live-announcer`.
+- **3.2 `js/app.js`:**
+  - Entrypoint y orquestador principal ES Modules.
+  - Carga secuencial: sincronización de contador inicial $\rightarrow$ inyección inmediata de 24 esqueletos $\rightarrow$ fetch resiliente a PokéAPI $\rightarrow$ renderizado de tarjetas.
+  - Manejo de fallos con panel amigable y callback de reintento funcional.
+  - Delegación de eventos eficiente con un único listener de clic sobre `#cards-container` utilizando `.closest('.btn-like')`.
+  - Sincronización multi-pestaña escuchando el evento `pokemon:likes-synced` para coherencia entre ventanas.
+- **Dictamen de Auditoría QA:** 🟢 **Aprobado con distinción.**
+
 ---
+
 
 
 

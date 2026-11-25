@@ -12,8 +12,8 @@
 
 ## 3. Renderizado de Interfaz y Microinteracciones
 
-- [ ] 3.1 Implementar el módulo `js/ui.js` con las funciones de renderizado (`renderPokemonCards(pokemonList, likedSet)`, `renderSkeletons(count)`, `renderError(message, onRetry)` y actualización del contador) asegurando accesibilidad WCAG AA (`aria-pressed`, `aria-label`) y verificar el renderizado en DOM.
-- [ ] 3.2 Implementar el orquestador `js/app.js` para inicializar la aplicación, cargar datos de la API, sincronizar el estado inicial de likes y manejar la delegación de eventos del botón de like y reintento.
+- [x] 3.1 Implementar el módulo `js/ui.js` con las funciones de renderizado (`renderPokemonCards(pokemonList, likedSet)`, `renderSkeletons(count)`, `renderError(message, onRetry)` y actualización del contador) asegurando accesibilidad WCAG AA (`aria-pressed`, `aria-label`) y verificar el renderizado en DOM.
+- [x] 3.2 Implementar el orquestador `js/app.js` para inicializar la aplicación, cargar datos de la API, sincronizar el estado inicial de likes y manejar la delegación de eventos del botón de like y reintento.
 
 ## 4. Verificación Integral y Pruebas en Navegador
 
