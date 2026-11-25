@@ -2,8 +2,8 @@
 
 ## 1. Estructura Base y Maquetación Semántica
 
-- [ ] 1.1 Crear el archivo `index.html` con estructura semántica completa (header con contador de likes, contenedor principal para la cuadrícula y live announcer para a11y) y verificar su correcta sintaxis en navegador.
-- [ ] 1.2 Crear el archivo `styles.css` con el sistema de diseño *Pokédex Neo-Collector* (variables CSS de paleta y tipos elementales, grid responsivo, skeletons con shimmer y microinteracción del botón de like con @keyframes) y verificar su carga visual sin errores.
+- [x] 1.1 Crear el archivo `index.html` con estructura semántica completa (header con contador de likes, contenedor principal para la cuadrícula y live announcer para a11y) y verificar su correcta sintaxis en navegador.
+- [x] 1.2 Crear el archivo `styles.css` con el sistema de diseño *Pokédex Neo-Collector* (variables CSS de paleta y tipos elementales, grid responsivo, skeletons con shimmer y microinteracción del botón de like con @keyframes) y verificar su carga visual sin errores.
 
 ## 2. Módulos de Acceso a Datos y Persistencia
 

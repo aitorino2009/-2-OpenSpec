@@ -125,4 +125,32 @@
 
 ---
 
+## 🛠️ Paso 3: Trabajo Tarea por Tarea sobre `tasks.md`
+
+- **Rama Git:** `feature/paso-3-tasks`
+- **Enfoque Metodológico:** Ejecución atómica controlada por el Desarrollador Worker, supervisión del Coordinador y auditoría implacable del QA Auditor tras cada tarea.
+
+### Bloque 1: Estructura Base y Maquetación Semántica (Tareas 1.1 y 1.2)
+- **1.1 `index.html`:**
+  - Estructura HTML5 semántica completa (`<!DOCTYPE html>`, `<html lang="es">`).
+  - Enlace de salto accesible `<a href="#cards-container" class="skip-link">Saltar a la colección de cartas</a>`.
+  - Header con identidad de marca `PokéDeck Neo-Collector` y widget de favoritos con región accesible `aria-live="polite"`.
+  - Región de cuadrícula `#cards-container` con `role="region"`, `aria-label` y `aria-busy="true"`.
+  - **Cero antipatrones:** Ausencia absoluta de `tabindex="0"` en contenedores o artículos para evitar trampas de foco.
+  - Región silenciosa `#live-announcer` para lectores de pantalla.
+  - Carga modular nativa: `<script type="module" src="js/app.js"></script>`.
+- **1.2 `styles.css`:**
+  - Sistema de diseño *Pokédex Neo-Collector* (789 líneas).
+  - Design Tokens en `:root`: paleta oscura (`#090D1A`, `#111827`), contrastes de texto superiores a 13:1 (AAA) y 5.5:1 (AA), y los 18 tipos Pokémon canónicos.
+  - Grid responsivo intrínseco (`repeat(auto-fill, minmax(min(280px, 100%), 1fr))`).
+  - Skeletons idénticos a las cartas finales con animación `@keyframes shimmer` (garantía de **CLS = 0**).
+  - Microinteracción de like en CSS puro: área táctil de 44x44px, `@keyframes like-elastic` con curva física `cubic-bezier(0.175, 0.885, 0.32, 1.275)` y pseudo-elemento expansivo `::after` (`@keyframes ring-pulse`).
+  - Soporte completo para `@media (prefers-reduced-motion: reduce)` y `:focus-visible` de alto contraste en cian `#38BDF8`.
+- **Comprobación Mini-Ejercicio B (Ejecución Controlada):**
+  - Se verificó que tras la Tarea 1 se generaron exclusivamente `index.html` y `styles.css`. No se generó código JS prematuro.
+- **Dictamen de Auditoría QA:** 🟢 **Aprobado con máxima calificación.**
+
+---
+
+
 
