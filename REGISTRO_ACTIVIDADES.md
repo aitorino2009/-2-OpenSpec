@@ -211,6 +211,50 @@
 
 ---
 
+## 🚀 Paso 4: Consolidación Final con `/opsx:apply` y Archivo de Especificaciones
+
+- **Rama Git:** `feature/paso-4-apply`
+- **Comando Ejecutado:** `openspec archive pokemon-cards-likes -y`
+- **Resultado:**
+  - Delta spec consolidada en la especificación principal del proyecto: `ProyectoPikachus/openspec/specs/pokemon-cards-likes/spec.md` con 3 requisitos formales y 6 escenarios normativos.
+  - El cambio `pokemon-cards-likes` quedó completado al 100% (10/10 tareas) y archivado formalmente bajo `ProyectoPikachus/openspec/changes/archive/2026-11-25-pokemon-cards-likes/`.
+  - El comando `openspec list --specs` certifica la especificación activa: `pokemon-cards-likes (requirements: 3)`.
+
+---
+
+## 🌐 Paso 5: Verificación en Navegador y Entregable de Evaluación
+
+- **Instrucciones para Verificación en Navegador (LiveServer / HTTP):**
+  1. Abrir la carpeta `ProyectoPikachus` en VS Code.
+  2. Hacer clic derecho sobre `index.html` $\rightarrow$ *"Open with Live Server"* (o ejecutar un servidor local como `npx serve ProyectoPikachus`).
+  3. **Verificaciones Comprobadas:**
+     - **Carga de PokéAPI:** 24 cartas de la Gen 1 con ilustraciones oficiales en alta resolución (`official-artwork`), nombres en mayúscula inicial, números #XXX, badges de tipo con colores canónicos y lista de estadísticas.
+     - **Animación y Contador:** Clic en cualquier tarjeta activa la animación física elástica `@keyframes like-elastic`, cambia a corazón carmesí `#F43F5E`, emite halo `ring-pulse`, incrementa el contador de la cabecera en tiempo real y conmuta `aria-pressed="true"`.
+     - **Persistencia en localStorage:** Al recargar la página (F5 / Ctrl+R), los Pokémon marcados previamente mantienen su like activo y el contador refleja inmediatamente el número total guardado bajo la clave `'pokecards_v1_likes'`.
+     - **Resiliencia ante Fallos:** Si se desconecta la red, la interfaz muestra el estado amigable de error y recupera la colección completa al pulsar *"Reintentar conexión"* sin refrescar la página.
+
+- **Preguntas de Evaluación (Entregable):**
+  - Documentadas en detalle en el archivo específico [RESPUESTAS_EVALUACION.md](file:///c:/Users/AITORPORTALESCRESPI/OneDrive%20-%20CC%20Sant%20Josep%20Obrer%20I/Documentos/APOF/OpenSpec%20ejercicio%20vip/RESPUESTAS_EVALUACION.md).
+
+---
+
+## 🌳 Historial de Ramas y Commits en GitHub
+
+- **Repositorio:** [https://github.com/aitorino2009/-2-OpenSpec](https://github.com/aitorino2009/-2-OpenSpec)
+- **Ramas Creadas y Utilizadas:**
+  1. `main`: Configuración inicial del repositorio, instalación de skills oficiales (`taste-skill`, `ui-ux-pro-max`, `frontend-design`, `impeccable`) y setup de OpenSpec CLI.
+  2. `feature/paso-1-explore`: Exploración técnica de PokéAPI, microinteracciones CSS, informe de subagente desarrollador, regaño y poda por QA auditor.
+  3. `feature/paso-2-propose`: Generación de propuesta OpenSpec `pokemon-cards-likes` con 4 artefactos (`proposal.md`, `design.md`, `spec.md`, `tasks.md`), poda de CSS fragmentado (Mini-Ejercicio A) y validación limpia.
+  4. `feature/paso-3-tasks`: Ejecución secuencial tarea por tarea:
+     - Tarea 1: `index.html` y `styles.css` (Mini-Ejercicio B de ejecución controlada).
+     - Tarea 2: `js/storage.js` y `js/api.js` (Mini-Ejercicio C de ajuste de artefacto).
+     - Tarea 3: `js/ui.js` y `js/app.js` (renderizado y orquestación con cero trampas de foco).
+     - Tarea 4: Verificación integral y pruebas en runtime (10/10 completado).
+  5. `feature/paso-4-apply`: Consolidación de specs, archivado del cambio en OpenSpec, entregable de evaluación y merge final a `main`.
+
+---
+
+
 
 
 
