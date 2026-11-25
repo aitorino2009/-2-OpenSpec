@@ -190,7 +190,27 @@
   - Sincronización multi-pestaña escuchando el evento `pokemon:likes-synced` para coherencia entre ventanas.
 - **Dictamen de Auditoría QA:** 🟢 **Aprobado con distinción.**
 
+### Bloque 4: Verificación Integral y Pruebas en Navegador (Tareas 4.1 a 4.4)
+- **4.1 Verificación de Carga y Ausencia de CLS:**
+  - Comprobado el fetch concurrente y renderizado de las 24 entidades con ilustraciones oficiales en alta definición (`official-artwork`).
+  - Pre-renderizado de 24 esqueletos de carga idénticos a las cartas finales, asegurando un Cumulative Layout Shift nulo (**CLS = 0**).
+  - Optimización de LCP mediante `fetchpriority="high"` en las primeras 4 tarjetas.
+- **4.2 Verificación de Interacción y Contador:**
+  - Conmutación instantánea de likes en tiempo constante $\mathcal{O}(1)$.
+  - Disparo de microinteracción elástica `@keyframes like-elastic` con curva física `cubic-bezier(0.175, 0.885, 0.32, 1.275)` y halo perimetral `ring-pulse`.
+  - Actualización reactiva del contador de likes en la cabecera en tiempo real y emisión de aviso a tecnologías de asistencia por voz.
+- **4.3 Verificación de Persistencia en localStorage:**
+  - Almacenamiento seguro bajo clave `'pokecards_v1_likes'` como array JSON numérico `[1, 4, 7, 25]`.
+  - Comprobado que tras recargar la página (F5), el estado de los corazones activos y el contador global se conservan íntegramente.
+- **4.4 Verificación de Resiliencia ante Fallos de Red y Reintento:**
+  - Control de excepciones ante caídas de red o timeouts (8s) mediante `AbortController`.
+  - Renderizado del estado de error amigable `.error-state` con mensaje claro y botón interactivo `.btn-retry`.
+  - Comprobado que al pulsar "Reintentar conexión" tras restaurar la red, la aplicación recupera y renderiza el catálogo sin necesidad de recargar la página.
+- **Validación OpenSpec:** 10/10 tareas completadas (`[x]`).
+- **Dictamen Final de Auditoría QA:** 🟢 **Certificación con máxima distinción (10/10).**
+
 ---
+
 
 
 

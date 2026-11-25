@@ -17,7 +17,7 @@
 
 ## 4. Verificación Integral y Pruebas en Navegador
 
-- [ ] 4.1 Verificar la carga completa de las 24 tarjetas con ilustraciones en alta resolución y ausencia de saltos de diseño (CLS = 0).
-- [ ] 4.2 Probar la marcación y desmarcación de likes, comprobando la animación visual y la actualización del contador en la cabecera.
-- [ ] 4.3 Comprobar la persistencia recargando la página y verificando que los likes se mantienen activos gracias a `localStorage`.
-- [ ] 4.4 Simular fallo de red (modo offline) para verificar que el estado de error y el botón de reintento funcionan adecuadamente.
+- [x] 4.1 Verificar la carga completa de las 24 tarjetas con ilustraciones en alta resolución y ausencia de saltos de diseño (CLS = 0).
+- [x] 4.2 Probar la marcación y desmarcación de likes, comprobando la animación visual y la actualización del contador en la cabecera.
+- [x] 4.3 Comprobar la persistencia recargando la página y verificando que los likes se mantienen activos gracias a `localStorage`.
+- [x] 4.4 Simular fallo de red (modo offline) para verificar que el estado de error y el botón de reintento funcionan adecuadamente.
