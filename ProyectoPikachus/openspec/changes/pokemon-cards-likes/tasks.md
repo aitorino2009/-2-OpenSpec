@@ -7,8 +7,8 @@
 
 ## 2. Módulos de Acceso a Datos y Persistencia
 
-- [ ] 2.1 Implementar el módulo `js/storage.js` para gestionar los likes en `localStorage` (funciones `getLikes()`, `isLiked(id)`, `toggleLike(id)` y `getLikesCount()` con validación defensiva y fallback en memoria) y verificar su funcionamiento mediante consola.
-- [ ] 2.2 Implementar el módulo `js/api.js` para consumir la PokéAPI (`fetchPokemonList(limit)` con `limit=24`, resolución concurrente con `Promise.allSettled`, timeout y normalización a modelo de dominio) y verificar la recepción correcta de datos en consola.
+- [x] 2.1 Implementar el módulo `js/storage.js` para gestionar los likes en `localStorage` (funciones `getLikedIds()`, `isLiked(id)`, `toggleLike(id)` y `getLikesCount()` con validación defensiva `safeReadLikes` y fallback en memoria) y verificar su funcionamiento.
+- [x] 2.2 Implementar el módulo `js/api.js` para consumir la PokéAPI (`fetchPokemonList(limit)` con `limit=24`, resolución concurrente con `Promise.allSettled`, filtrado resiliente de resultados cumplidos, timeout con `AbortController` de 8s y normalización a modelo de dominio plano) y verificar la recepción correcta de datos.
 
 ## 3. Renderizado de Interfaz y Microinteracciones
 

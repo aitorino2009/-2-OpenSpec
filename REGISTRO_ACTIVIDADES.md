@@ -150,7 +150,29 @@
   - Se verificó que tras la Tarea 1 se generaron exclusivamente `index.html` y `styles.css`. No se generó código JS prematuro.
 - **Dictamen de Auditoría QA:** 🟢 **Aprobado con máxima calificación.**
 
+### Bloque 2: Módulos de Acceso a Datos y Persistencia (Tareas 2.1 y 2.2)
+- **2.1 `js/storage.js`:**
+  - Persistencia bajo clave canónica `'pokecards_v1_likes'`.
+  - Gestión en memoria mediante `Set<number>` para operaciones en tiempo constante $\mathcal{O}(1)$.
+  - Métodos exportados: `getLikedIds()` (copia defensiva), `isLiked(id)`, `toggleLike(id)`, `getLikesCount()`.
+  - Validación defensiva `safeReadLikes()` con detección de arrays, filtrado de enteros positivos (`Number.isInteger(n) && n > 0`) y auto-recuperación ante JSON corrupto.
+  - Tolerancia a fallos: fallback a `memoryStore` ante bloqueos de privacidad o cuota excedida (`QuotaExceededError`).
+  - Sincronización multi-pestaña mediante evento `storage`. Cero manipulación del DOM.
+- **2.2 `js/api.js`:**
+  - Consumo desacoplado de PokéAPI: `fetchPokemonList(limit = 24)` y `getCachedPokemon(id)`.
+  - Resolución concurrente con `Promise.allSettled()` y filtrado exclusivo de promesas cumplidas (`status === 'fulfilled'`).
+  - Control estricto de timeout mediante `AbortController` (8.000 ms) y limpieza con `clearTimeout`.
+  - Normalización a modelo de dominio plano (`id`, `formattedId`, `name`, `types`, `primaryType`, `imageUrl` oficial con fallbacks, `stats`, dimensiones formateadas).
+  - Ordenación estricta por ID Pokédex y caché en memoria con `Map<number, PokemonCardData>`. Cero manipulación del DOM.
+- **Mini-Ejercicio C — Corrección y Ajuste de Artefacto:**
+  - Se detectó que la firma genérica `getLikes()` en `tasks.md` podía inducir a error (pareciendo que retornaba objetos completos de Pokémon).
+  - Se corrigió manualmente `tasks.md` antes de implementar el código para estandarizar `getLikedIds()` y especificar el filtrado resiliente de peticiones cumplidas con `Promise.allSettled()`.
+- **Pruebas de Verificación en Runtime:**
+  - Ejecución de tests en consola con Node.js verificando toggle de likes, conteo dinámico, persistencia y fetch concurrente de entidades normalizadas.
+- **Dictamen de Auditoría QA:** 🟢 **Aprobado con honores.**
+
 ---
+
 
 
 
